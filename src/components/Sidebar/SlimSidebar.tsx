@@ -442,15 +442,24 @@ export function SlimSidebar() {
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3 dark:border-gray-800">
           <h1 className="text-lg font-semibold text-gray-900 dark:text-white">Docs</h1>
-          {currentUser && (
+          <div className="flex items-center gap-1">
             <button
-              onClick={handleAddRoot}
+              onClick={toggleDarkMode}
               className="rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-              title="Add new section"
+              title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              <PlusIcon className="h-5 w-5" />
+              {darkMode ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
             </button>
-          )}
+            {currentUser && (
+              <button
+                onClick={handleAddRoot}
+                className="rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+                title="Add new section"
+              >
+                <PlusIcon className="h-5 w-5" />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Navigation */}
@@ -561,24 +570,6 @@ export function SlimSidebar() {
               )}
             </div>
           )}
-
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={toggleDarkMode}
-            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
-          >
-            {darkMode ? (
-              <>
-                <SunIcon className="h-4 w-4" />
-                <span>Light Mode</span>
-              </>
-            ) : (
-              <>
-                <MoonIcon className="h-4 w-4" />
-                <span>Dark Mode</span>
-              </>
-            )}
-          </button>
 
           {/* User Section */}
           {currentUser && (
